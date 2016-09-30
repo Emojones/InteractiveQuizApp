@@ -1,5 +1,5 @@
 var QuizUI = {
-    displayNext: function() {
+    displayNext: function () {
         if (quiz.ended()) {
             this.displayScore();
         } else {
@@ -13,21 +13,23 @@ var QuizUI = {
     },
     displayChoices: function() {
         var choices = quiz.getCurrentQuestion().choices;
-        
-        for (var i=0; i < choices.length; i++){
-            this.populateIdWithHTML("choice"+i, choices[i]);
-            this.guessHandler("guess"+1, choices[i]);
+
+        for(var i = 0; i < choices.length; i++) {
+            this.populateIdWithHTML("choice" + i, choices[i]);
+            this.guessHandler("guess" + i, choices[i]);
         }
     },
     displayScore: function() {
-        var gameOverHTML = "<h1>Game Over brah</h1>";
-        gameOverHTML += "<h2>Your score is: " + quiz.score + "</h2";
+        var gameOverHTML = "<h1>Game Over</h1>";
+        gameOverHTML += "<h2> Your score is: " + quiz.score + "</h2>";
         this.populateIdWithHTML("quiz", gameOverHTML);
     },
+    
     populateIdWithHTML: function(id, text) {
         var element = document.getElementById(id);
+        element.innerHTML = text;
     },
-  guessHandler: function(id, guess) {
+    guessHandler: function(id, guess) {
         var button = document.getElementById(id);
         button.onclick = function() {
             quiz.guess(guess);
